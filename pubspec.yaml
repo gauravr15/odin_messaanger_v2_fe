@@ -1,0 +1,26 @@
+name: odin_messenger_v2
+description: A new Flutter project.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  http: ^0.13.3
+  crypto: ^3.0.1  # Add the crypto package
+  encrypt: ^5.0.0  # Add the encrypt package
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+
+  # Add your assets here
+  assets:
+    - lib/assets/brandLogo.png
