@@ -13,12 +13,16 @@ class LoginScreen extends StatelessWidget {
             TextField(
               decoration: InputDecoration(
                 hintText: 'Mobile Number',
+                filled: true, // Set filled to true
+                fillColor: Colors.white, // Set background color to white
               ),
             ),
             SizedBox(height: 16.0),
             TextField(
               decoration: InputDecoration(
                 hintText: 'Password',
+                filled: true, // Set filled to true
+                fillColor: Colors.white, // Set background color to white
               ),
             ),
             SizedBox(height: 16.0),
@@ -29,23 +33,20 @@ class LoginScreen extends StatelessWidget {
               child: Text('Sign In'),
             ),
             SizedBox(height: 16.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    // Handle login via OTP text press
-                  },
-                  child: Text('Login via OTP'),
-                ),
-                SizedBox(width: 16.0),
-                GestureDetector(
-                  onTap: () {
-                    // Handle forgot password text press
-                  },
-                  child: Text('Forgot Password'),
-                ),
-              ],
+            GestureDetector(
+              onTap: () {
+                // Handle login via OTP text press
+              },
+              child: Text('Login via OTP'),
+            ),
+            SizedBox(
+                height:
+                    8.0), // Add SizedBox to create space between the two text widgets
+            GestureDetector(
+              onTap: () {
+                // Handle forgot password text press
+              },
+              child: Text('Forgot Password'),
             ),
             SizedBox(height: 16.0),
             ElevatedButton(

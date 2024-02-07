@@ -1,9 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 import 'package:odin_messenger_v2/utils/api_interceptors.dart';
 import 'package:odin_messenger_v2/utils/config.dart';
+import 'package:odin_messenger_v2/screens/login.dart'; // Add this line
 
 class StartupScreen extends StatefulWidget {
   final CustomHttpClient client; // Add this line
@@ -43,12 +42,32 @@ class _StartupScreenState extends State<StartupScreen> {
         final data = json.decode(response.body);
         print('Response Data: $data');
 
-        // Process the response as needed for your application
-        // For now, let's just print a message
-        print('App Version Checked Successfully');
-
-        // Navigate to the login screen
-        Navigator.pushReplacementNamed(context, '/login');
+        if (data['status'] == 'SUCCESS') {
+          // Move to the login screen
+          Navigator.pushReplacementNamed(context, '/login');
+        } else {
+          // Show a pop-up dialog with a reload button
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text('Unable to connect to server'),
+                content: Text(
+                    'Please check your internet connection and try again.'),
+                actions: [
+                  ElevatedButton(
+                    onPressed: () {
+                      // Reload the data
+                      fetchData();
+                      Navigator.of(context).pop();
+                    },
+                    child: Text('Reload'),
+                  ),
+                ],
+              );
+            },
+          );
+        }
       } else {
         // Handle the error case
         print('Failed to fetch data: ${response.statusCode}');
